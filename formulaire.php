@@ -1,16 +1,17 @@
 <?php
-// ================== formulaire.php ==================
+
 session_start();
+if (isset($_GET['nouveau'])) unset($_SESSION['data']);   // nouvelle fiche vide depuis l'accueil
 $d = $_SESSION['data'] ?? [];   // Q3 : valeurs déjà saisies (retour via MODIFIER)
 
-// Réafficher une valeur texte (ou la case $i d'un tableau)
+
 function v($k, $i = null) {
     global $d;
     $x = $d[$k] ?? '';
     if ($i !== null) $x = is_array($x) ? ($x[$i] ?? '') : '';
     return htmlspecialchars($x);
 }
-// Cocher un bouton radio / une case à cocher
+
 function coche($k, $val) {
     global $d;
     $x = $d[$k] ?? '';
@@ -37,7 +38,6 @@ function coche($k, $val) {
 
 <form action="recap.php" method="post" enctype="multipart/form-data">
 
-    <!-- ========== Q1 : Renseignements personnels ========== -->
     <fieldset>
         <legend>Renseignements Personnels</legend>
         <label>Nom :</label>     <input type="text"   name="nom"       value="<?= v('nom') ?>" required><br>
@@ -48,7 +48,7 @@ function coche($k, $val) {
         <label>Email :</label>   <input type="email"  name="email"     value="<?= v('email') ?>" required>
     </fieldset>
 
-    <!-- ========== Q1 : Renseignements académiques ========== -->
+    
     <fieldset>
         <legend>Renseignements Académiques</legend>
 
@@ -77,7 +77,6 @@ function coche($k, $val) {
         </select>
     </fieldset>
 
-    <!-- ========== Q2 : Projets et stages ========== -->
     <fieldset>
         <legend>Projets et stages réalisés</legend>
         <table>
@@ -99,7 +98,7 @@ function coche($k, $val) {
         </table>
     </fieldset>
 
-    <!-- ========== Q2 : Centres d'intérêt, compétences, langues ========== -->
+    
     <fieldset>
         <legend>Profil</legend>
         <label>Centres d'intérêt :</label><br>
@@ -110,7 +109,7 @@ function coche($k, $val) {
         <textarea name="langues"><?= v('langues') ?></textarea>
     </fieldset>
 
-    <!-- ========== Q1 : Remarques + fichier ========== -->
+    
     <fieldset>
         <legend>Vos remarques</legend>
         <textarea name="remarques"><?= v('remarques') ?></textarea><br>
@@ -122,6 +121,7 @@ function coche($k, $val) {
 
     <input type="submit" value="Envoyer">
     <input type="reset"  value="Effacer">
+    <button type="button" onclick="location.href='index.php'">Retour à l'accueil</button>
 </form>
 
 </body>

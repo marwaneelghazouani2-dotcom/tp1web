@@ -3,7 +3,7 @@
 session_start();
 $message = '';
 
-// ---------- Q3 : bouton VALIDER -> enregistrement dans un fichier texte ----------
+
 if (isset($_POST['valider']) && !empty($_SESSION['data'])) {
     $d = $_SESSION['data'];
     $txt = "===== Étudiant enregistré le " . date('Y-m-d H:i') . " =====\n";
@@ -23,7 +23,7 @@ if (isset($_POST['valider']) && !empty($_SESSION['data'])) {
     $message = "Informations enregistrées dans etudiants.txt";
 }
 
-// ---------- Q1 : traitement du formulaire (clic sur Envoyer) ----------
+
 elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = $_POST;
 
@@ -34,10 +34,10 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
         move_uploaded_file($_FILES['fichier']['tmp_name'], "uploads/$nomFichier");
         $data['fichier'] = $nomFichier;
     } else {
-        $data['fichier'] = $_SESSION['data']['fichier'] ?? '';   // garder l'ancien
+        $data['fichier'] = $_SESSION['data']['fichier'] ?? '';   
     }
 
-    $_SESSION['data'] = $data;   // Q3 : sert à pré-remplir formulaire.php
+    $_SESSION['data'] = $data;   
 }
 
 $d = $_SESSION['data'] ?? null;
@@ -66,7 +66,7 @@ function e($x) {
 
 <?php if ($message): ?><p class="ok"><?= $message ?></p><?php endif; ?>
 
-<!-- Q1 : récapitulatif -->
+
 <table>
     <tr><th>Nom</th>        <td><?= e($d['nom'] ?? '') ?></td></tr>
     <tr><th>Prénom</th>     <td><?= e($d['prenom'] ?? '') ?></td></tr>
@@ -80,7 +80,7 @@ function e($x) {
     <tr><th>Fichier</th>    <td><?= e($d['fichier'] ?? '') ?: 'Aucun' ?></td></tr>
 </table>
 
-<!-- Q2 : projets / stages -->
+
 <h3>Projets et stages</h3>
 <table>
     <tr><th>Type</th><th>Début</th><th>Fin</th><th>Lieu</th><th>Description</th></tr>
@@ -96,7 +96,7 @@ function e($x) {
     <?php endforeach; ?>
 </table>
 
-<!-- Q2 : profil -->
+
 <table>
     <tr><th>Centres d'intérêt</th><td><?= nl2br(e($d['interets'] ?? '')) ?></td></tr>
     <tr><th>Compétences</th>      <td><?= nl2br(e($d['competences'] ?? '')) ?></td></tr>
