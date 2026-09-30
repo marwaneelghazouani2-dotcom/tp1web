@@ -1,0 +1,17 @@
+===== Étudiant enregistré le 2026-09-29 21:37 =====
+nom : Elghazouani
+prenom : Marwane
+age : 33
+telephone : 0607696177
+email : marwaneelghazouani2@gmail.com
+filiere : GSTR
+annee : 2ème année
+modules : Réseaux Av
+nb_projets : 5
+interets : qwdq
+competences : rq3r
+langues : r33r32
+remarques : q3r24
+fichier : 
+Stage : du 2026-03-03 au 2026-04-03 à meknes  - eqdq
+

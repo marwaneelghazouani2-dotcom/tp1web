@@ -37,7 +37,21 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $data['fichier'] = $_SESSION['data']['fichier'] ?? '';   
     }
 
-    $_SESSION['data'] = $data;   
+    $_SESSION['data'] = $data;
+
+    
+    $erreurs = [];
+    $tel = trim($data['telephone'] ?? '');
+    if ($tel !== '' && !preg_match('/^(?:\+212|00212|0)[\s.-]?[5-7](?:[\s.-]?\d{2}){4}$/', $tel)) {
+        $erreurs[] = 'telephone';
+    }
+    if (!preg_match('/^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/', trim($data['email'] ?? ''))) {
+        $erreurs[] = 'email';
+    }
+    if ($erreurs) {
+        header('Location: formulaire.php?erreur=' . implode(',', $erreurs));
+        exit;
+    }
 }
 
 $d = $_SESSION['data'] ?? null;

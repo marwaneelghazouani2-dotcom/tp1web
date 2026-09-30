@@ -44,8 +44,10 @@ function coche($k, $val) {
         <label>Prénom :</label>  <input type="text"   name="prenom"    value="<?= v('prenom') ?>" required><br>
         <label>Âge :</label>     <input type="number" name="age"       value="<?= v('age') ?>" min="15" max="60"><br>
         <label>Numéro de téléphone :</label>
-                                 <input type="tel"    name="telephone" value="<?= v('telephone') ?>"><br>
-        <label>Email :</label>   <input type="email"  name="email"     value="<?= v('email') ?>" required>
+                                 <input type="tel"    name="telephone" id="telephone" value="<?= v('telephone') ?>" placeholder="06 12 34 56 78">
+        <span id="msg-telephone" style="color:red"></span><br>
+        <label>Email :</label>   <input type="text" inputmode="email" name="email" id="email" value="<?= v('email') ?>" placeholder="nom@exemple.com" required>
+        <span id="msg-email" style="color:red"></span>
     </fieldset>
 
     
@@ -123,6 +125,8 @@ function coche($k, $val) {
     <input type="reset"  value="Effacer">
     <button type="button" onclick="location.href='index.php'">Retour à l'accueil</button>
 </form>
+
+<script src="validation.js"></script>
 
 </body>
 </html>
